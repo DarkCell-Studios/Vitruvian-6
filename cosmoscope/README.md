@@ -12,10 +12,11 @@ npm run dev
 The development server starts on [http://localhost:5173](http://localhost:5173).
 
 > **Note**
-> The `postinstall` script materialises the ambient soundtrack by decoding
+> The `generate:audio` helper materialises the ambient soundtrack by decoding
 > `src/assets/audio/ambient-space.mp3.base64` into
-> `src/assets/audio/ambient-space.mp3`. Re-run `node ./scripts/generate-audio.mjs`
-> if you ever remove the generated asset manually.
+> `src/assets/audio/ambient-space.mp3`. It runs automatically after dependency
+> installation and before key npm scripts, but you can re-run it manually with
+> `node ./scripts/generate-audio.mjs` if you ever remove the generated asset.
 
 ### Available scripts
 
