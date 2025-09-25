@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import type { MissionRef } from "@/adapters/DataAdapter";
+import { cn } from "@/utils/cn";
 
 interface NeonPopupProps {
   title: string;
@@ -12,6 +13,9 @@ interface NeonPopupProps {
   onClose?: () => void;
   actionLabel?: string;
   children?: ReactNode;
+  className?: string;
+  contentClassName?: string;
+  footerClassName?: string;
 }
 
 export const NeonPopup = ({
@@ -23,14 +27,17 @@ export const NeonPopup = ({
   onClose,
   actionLabel = "Travel to the planet",
   children,
+  className,
+  contentClassName,
+  footerClassName,
 }: NeonPopupProps) => {
   return (
-    <Card className="neon-popup w-full max-w-md">
+    <Card className={cn("neon-popup flex w-full max-w-md flex-col overflow-hidden", className)}>
       <CardHeader>
         <CardTitle>{title}</CardTitle>
         {subtitle ? <CardDescription>{subtitle}</CardDescription> : null}
       </CardHeader>
-      <CardContent>
+      <CardContent className={cn("flex-1 overflow-y-auto pr-1", contentClassName)}>
         <p className="font-light text-white/80">{summary}</p>
         {missions.length > 0 ? (
           <div className="mt-4">
@@ -50,7 +57,7 @@ export const NeonPopup = ({
         ) : null}
         {children}
       </CardContent>
-      <CardFooter>
+      <CardFooter className={cn("mt-6 flex flex-wrap items-center gap-3", footerClassName)}>
         {onTravel ? (
           <Button onClick={onTravel}>{actionLabel}</Button>
         ) : null}
