@@ -1,0 +1,28 @@
+{
+  "version": 8,
+  "name": "Cosmoscope Base",
+  "glyphs": "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
+  "sources": {
+    "basemap": {
+      "type": "raster",
+      "tiles": ["https://basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png"],
+      "tileSize": 256,
+      "attribution": "© CARTO"
+    }
+  },
+  "layers": [
+    {
+      "id": "basemap",
+      "type": "raster",
+      "source": "basemap",
+      "paint": {
+        "raster-opacity": 0.75
+      }
+    }
+  ],
+  "light": {
+    "anchor": "viewport",
+    "color": "#ffffff",
+    "intensity": 0.2
+  }
+}
