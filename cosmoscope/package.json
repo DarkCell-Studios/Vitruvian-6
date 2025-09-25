@@ -4,14 +4,21 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "predev": "npm run generate:audio",
     "dev": "vite",
+    "prebuild": "npm run generate:audio",
     "build": "tsc --noEmit && vite build",
+    "prepreview": "npm run generate:audio",
     "preview": "vite preview",
+    "pretest": "npm run generate:audio",
     "test": "vitest run",
+    "pretest:watch": "npm run generate:audio",
     "test:watch": "vitest",
+    "pretest:e2e": "npm run generate:audio",
     "test:e2e": "playwright test",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "format": "prettier --write .",
+    "generate:audio": "node ./scripts/generate-audio.mjs",
     "postinstall": "node ./scripts/generate-audio.mjs"
   },
   "dependencies": {
