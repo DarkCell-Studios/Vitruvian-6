@@ -236,6 +236,30 @@ const PlanetSurfaceMaterial = ({
     );
   }
 
+  return (
+    <PlanetSurfaceMaterialWithTexture
+      color={color}
+      opacity={opacity}
+      textureUrl={textureUrl}
+      emissiveColor={emissiveColor}
+      emissiveIntensity={emissiveIntensity}
+    />
+  );
+};
+
+const PlanetSurfaceMaterialWithTexture = ({
+  color,
+  opacity,
+  textureUrl,
+  emissiveColor,
+  emissiveIntensity,
+}: {
+  color: Color;
+  opacity: number;
+  textureUrl: string;
+  emissiveColor?: string;
+  emissiveIntensity?: number;
+}) => {
   const texture = useTexture(textureUrl);
   texture.colorSpace = SRGBColorSpace;
 
@@ -258,18 +282,47 @@ const RingMesh = ({
   textureUrl,
   tilt,
 }: NonNullable<PlanetMeshProps["ring"]>) => {
-  const texture = textureUrl ? useTexture(textureUrl) : null;
-
-  if (texture) {
-    texture.colorSpace = SRGBColorSpace;
-    texture.wrapS = texture.wrapT = RepeatWrapping;
+  if (!textureUrl) {
+    return (
+      <mesh rotation={[-Math.PI / 2 + (tilt ?? 0), 0, 0]}>
+        <ringGeometry args={[innerRadius, outerRadius, 128]} />
+        <meshStandardMaterial
+          color="#c7bb90"
+          side={DoubleSide}
+          transparent
+          opacity={opacity}
+        />
+      </mesh>
+    );
   }
+
+  return (
+    <RingMeshWithTexture
+      innerRadius={innerRadius}
+      outerRadius={outerRadius}
+      opacity={opacity}
+      textureUrl={textureUrl}
+      tilt={tilt}
+    />
+  );
+};
+
+const RingMeshWithTexture = ({
+  innerRadius,
+  outerRadius,
+  opacity,
+  textureUrl,
+  tilt,
+}: NonNullable<PlanetMeshProps["ring"]>) => {
+  const texture = useTexture(textureUrl);
+  texture.colorSpace = SRGBColorSpace;
+  texture.wrapS = texture.wrapT = RepeatWrapping;
 
   return (
     <mesh rotation={[-Math.PI / 2 + (tilt ?? 0), 0, 0]}>
       <ringGeometry args={[innerRadius, outerRadius, 128]} />
       <meshStandardMaterial
-        map={texture ?? undefined}
+        map={texture}
         color="#c7bb90"
         side={DoubleSide}
         transparent

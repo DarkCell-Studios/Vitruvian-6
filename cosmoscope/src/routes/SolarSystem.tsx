@@ -10,6 +10,7 @@ import { dataAdapter } from "@/adapters/NasaAdapter";
 import type { PlanetDetail, PlanetSummary } from "@/adapters/DataAdapter";
 import { usePlanetStore, type CameraMode } from "@/state/usePlanetStore";
 import { createWarpTimeline } from "@/lib/cameraTransitions";
+import { ResizablePanels } from "@/components/layout/ResizablePanels";
 
 const INTERACTABLE_PLANETS = new Set(["earth", "moon", "mars"]);
 
@@ -99,59 +100,73 @@ export default function SolarSystem() {
           <ToggleGroupItem value="top-down">Top</ToggleGroupItem>
         </ToggleGroup>
       </header>
-      <main className="grid flex-1 grid-cols-1 gap-8 px-8 pb-12 lg:grid-cols-[2fr_1fr]">
-        <section className="relative min-h-[60vh] overflow-hidden rounded-3xl border border-white/10 shadow-[0_0_40px_rgba(0,246,255,0.2)]">
-          <SolarSystemScene
-            cameraMode={cameraMode}
-            selectedPlanetId={currentPlanet ?? undefined}
-            onPlanetClick={handlePlanetFocus}
-            onPlanetDoubleClick={handleTravel}
-          />
-          {isWarping ? (
-            <div className="pointer-events-none absolute inset-0 animate-pulse bg-gradient-to-br from-neon-blue/20 via-neon-pink/15 to-transparent" />
-          ) : null}
-        </section>
-        <aside className="flex flex-col gap-6">
-          <div className="rounded-3xl border border-white/10 bg-space-mid/70 p-6 backdrop-blur-2xl">
-            <h2 className="text-sm uppercase tracking-[0.4em] text-neon-blue">Mission Log</h2>
-            <ul className="mt-4 space-y-3 text-sm text-white/70">
-              {summaries.map((summary) => (
-                <li key={summary.id} className="flex items-center justify-between">
-                  <span>{summary.name}</span>
-                  <Button
-                    variant={summary.id === currentPlanet ? "default" : "outline"}
-                    size="sm"
-                    onClick={() => handlePlanetFocus(summary.id)}
-                  >
-                    {summary.id === currentPlanet ? "Selected" : "Focus"}
-                  </Button>
-                </li>
-              ))}
-            </ul>
-          </div>
-          {selectedSummary && detail ? (
-            <NeonPopup
-              title={selectedSummary.name}
-              subtitle={`${detail.age} · Gravity ${detail.gravity}`}
-              summary={detail.description}
-              missions={missionRefs}
-              onTravel={() => handleTravel(selectedSummary.id)}
-              onClose={() => setCurrentPlanet(null)}
-            >
-              {infoHighlight.length > 0 ? (
-                <ul className="mt-4 list-disc space-y-1 pl-6 text-xs text-white/70">
-                  {infoHighlight.map((fact) => (
-                    <li key={fact}>{fact}</li>
+      <main className="flex-1 px-8 pb-12">
+        <ResizablePanels
+          className="h-full"
+          initialRatio={0.65}
+          minPrimaryWidth={360}
+          minSecondaryWidth={320}
+          maxSecondaryWidth={640}
+          storageKey="cosmoscope:solar-system-panels"
+          handleLabel="Resize mission console"
+          primary={
+            <section className="relative flex h-full min-h-[60vh] overflow-hidden rounded-3xl border border-white/10 shadow-[0_0_40px_rgba(0,246,255,0.2)]">
+              <SolarSystemScene
+                cameraMode={cameraMode}
+                selectedPlanetId={currentPlanet ?? undefined}
+                onPlanetClick={handlePlanetFocus}
+                onPlanetDoubleClick={handleTravel}
+              />
+              {isWarping ? (
+                <div className="pointer-events-none absolute inset-0 animate-pulse bg-gradient-to-br from-neon-blue/20 via-neon-pink/15 to-transparent" />
+              ) : null}
+            </section>
+          }
+          secondary={
+            <aside className="flex h-full min-h-[320px] flex-1 flex-col gap-6 overflow-hidden">
+              <div className="rounded-3xl border border-white/10 bg-space-mid/70 p-6 backdrop-blur-2xl lg:max-h-[45vh] lg:overflow-y-auto">
+                <h2 className="text-sm uppercase tracking-[0.4em] text-neon-blue">Mission Log</h2>
+                <ul className="mt-4 space-y-3 text-sm text-white/70">
+                  {summaries.map((summary) => (
+                    <li key={summary.id} className="flex items-center justify-between gap-3">
+                      <span className="truncate">{summary.name}</span>
+                      <Button
+                        variant={summary.id === currentPlanet ? "default" : "outline"}
+                        size="sm"
+                        onClick={() => handlePlanetFocus(summary.id)}
+                      >
+                        {summary.id === currentPlanet ? "Selected" : "Focus"}
+                      </Button>
+                    </li>
                   ))}
                 </ul>
-              ) : null}
-              <div className="mt-4 flex flex-wrap gap-3 text-xs uppercase tracking-[0.3em] text-neon-blue">
-                <span>Orbit {detail.orbitalPeriodDays} days</span>
-                <span>Rotation {detail.rotationHours}h</span>
               </div>
-            </NeonPopup>
-          ) : null}
-        </aside>
+              {selectedSummary && detail ? (
+                <NeonPopup
+                  className="max-w-none overflow-hidden lg:flex-1"
+                  title={selectedSummary.name}
+                  subtitle={`${detail.age} · Gravity ${detail.gravity}`}
+                  summary={detail.description}
+                  missions={missionRefs}
+                  onTravel={() => handleTravel(selectedSummary.id)}
+                  onClose={() => setCurrentPlanet(null)}
+                >
+                  {infoHighlight.length > 0 ? (
+                    <ul className="mt-4 list-disc space-y-1 pl-6 text-xs text-white/70">
+                      {infoHighlight.map((fact) => (
+                        <li key={fact}>{fact}</li>
+                      ))}
+                    </ul>
+                  ) : null}
+                  <div className="mt-4 flex flex-wrap gap-3 text-xs uppercase tracking-[0.3em] text-neon-blue">
+                    <span>Orbit {detail.orbitalPeriodDays} days</span>
+                    <span>Rotation {detail.rotationHours}h</span>
+                  </div>
+                </NeonPopup>
+              ) : null}
+            </aside>
+          }
+        />
       </main>
     </div>
   );
