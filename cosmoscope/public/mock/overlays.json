@@ -1,0 +1,53 @@
+{
+  "earth": [
+    {
+      "id": "base-overlay",
+      "label": "Blue Marble",
+      "description": "True-color composite from MODIS with subtle nightlights at low intensity.",
+      "kind": "raster",
+      "color": "#4a90e2",
+      "timeSteps": ["2024-01-01T00:00:00Z", "2024-07-01T00:00:00Z"],
+      "defaultTime": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": "thermal-overlay",
+      "label": "Thermal",
+      "description": "A stylised land surface temperature blend from VIIRS night passes.",
+      "kind": "heat",
+      "color": "#ff5bff",
+      "timeSteps": ["2024-03-01T00:00:00Z", "2024-09-01T00:00:00Z"],
+      "defaultTime": "2024-03-01T00:00:00Z"
+    }
+  ],
+  "moon": [
+    {
+      "id": "relief-overlay",
+      "label": "LOLA Relief",
+      "description": "Laser altimetry shaded relief emphasising polar craters.",
+      "kind": "vector",
+      "color": "#7f5fff",
+      "timeSteps": ["2023-01-01T00:00:00Z", "2023-07-01T00:00:00Z"],
+      "defaultTime": "2023-01-01T00:00:00Z"
+    }
+  ],
+  "mars": [
+    {
+      "id": "base-overlay",
+      "label": "MOLA Colorized",
+      "description": "Blended topography from MOLA and THEMIS imagery.",
+      "kind": "raster",
+      "color": "#ff8f5c",
+      "timeSteps": ["2022-01-01T00:00:00Z", "2024-01-01T00:00:00Z"],
+      "defaultTime": "2022-01-01T00:00:00Z"
+    },
+    {
+      "id": "thermal-overlay",
+      "label": "Atmospheric Dust",
+      "description": "TES-derived dust optical depth snapshots.",
+      "kind": "heat",
+      "color": "#ff5bff",
+      "timeSteps": ["2023-04-01T00:00:00Z", "2023-10-01T00:00:00Z"],
+      "defaultTime": "2023-04-01T00:00:00Z"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "earth": {
+    "id": "earth",
+    "name": "Earth",
+    "age": "4.54 ± 0.05 Ga",
+    "headline": "Our luminous blue home world",
+    "missions": ["apollo-11", "iss", "landsat"],
+    "accentColor": "#4a90e2",
+    "description": "Earth is the only known world with a stable hydrosphere and thriving biosphere. Its magnetosphere and layered atmosphere shield a dynamic surface shaped by plate tectonics and weather.",
+    "highlights": [
+      "78% ocean coverage amplifies climate regulation",
+      "Global navigation satellites weave an invisible infrastructure",
+      "Auroral curtains reveal space weather in real-time"
+    ],
+    "orbitalPeriodDays": 365.25,
+    "rotationHours": 23.934,
+    "gravity": "1 g"
+  },
+  "moon": {
+    "id": "moon",
+    "name": "Moon",
+    "age": "4.51 Ga",
+    "headline": "Tidal storyteller and archive of impacts",
+    "missions": ["apollo-17", "lro"],
+    "accentColor": "#f2f5f7",
+    "description": "The Moon preserves eons of Solar System history across cratered highlands and basaltic maria. Its slow rotation and tenuous exosphere create stark day-night contrasts.",
+    "highlights": [
+      "Regolith stores solar wind particles for in-situ study",
+      "Libration reveals hidden crater rims each lunar night",
+      "South pole peaks offer near-permanent sunlight"
+    ],
+    "orbitalPeriodDays": 27.3217,
+    "rotationHours": 655.728,
+    "gravity": "0.165 g"
+  },
+  "mars": {
+    "id": "mars",
+    "name": "Mars",
+    "age": "4.603 Ga",
+    "headline": "Rust-hued frontier of robotic explorers",
+    "missions": ["perseverance", "maven", "insight"],
+    "accentColor": "#d96c3d",
+    "description": "Mars hosts canyons, volcanoes, and ancient river deltas that chronicle a wetter past. Thin atmosphere and dust-driven seasons sculpt its present climate.",
+    "highlights": [
+      "Perseverance rover caches samples for the first Mars return",
+      "Recurring slope lineae hint at seasonal brines",
+      "Subsurface ice maps reveal future landing depots"
+    ],
+    "orbitalPeriodDays": 686.98,
+    "rotationHours": 24.623,
+    "gravity": "0.38 g"
+  }
+}

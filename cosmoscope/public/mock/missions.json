@@ -1,0 +1,66 @@
+{
+  "apollo-11": {
+    "id": "apollo-11",
+    "name": "Apollo 11",
+    "agency": "NASA",
+    "year": 1969,
+    "status": "completed",
+    "summary": "First crewed lunar landing placing humans on the Moon and returning them safely to Earth."
+  },
+  "apollo-17": {
+    "id": "apollo-17",
+    "name": "Apollo 17",
+    "agency": "NASA",
+    "year": 1972,
+    "status": "completed",
+    "summary": "Final Apollo mission, delivering extensive geological sampling of the Taurus-Littrow valley."
+  },
+  "lro": {
+    "id": "lro",
+    "name": "Lunar Reconnaissance Orbiter",
+    "agency": "NASA",
+    "year": 2009,
+    "status": "active",
+    "summary": "High-resolution lunar mapping mission supporting landing site selection and polar ice prospecting."
+  },
+  "iss": {
+    "id": "iss",
+    "name": "International Space Station",
+    "agency": "NASA/ESA/Roscosmos/CSA/JAXA",
+    "year": 1998,
+    "status": "active",
+    "summary": "Microgravity research platform and proving ground for long-duration human spaceflight."
+  },
+  "landsat": {
+    "id": "landsat",
+    "name": "Landsat Program",
+    "agency": "NASA/USGS",
+    "year": 1972,
+    "status": "active",
+    "summary": "Continuous multispectral imaging archive monitoring Earth's surface change."
+  },
+  "perseverance": {
+    "id": "perseverance",
+    "name": "Mars Perseverance Rover",
+    "agency": "NASA",
+    "year": 2021,
+    "status": "active",
+    "summary": "Rover investigating astrobiology and caching samples in Jezero crater."
+  },
+  "maven": {
+    "id": "maven",
+    "name": "MAVEN",
+    "agency": "NASA",
+    "year": 2013,
+    "status": "active",
+    "summary": "Orbiter characterising Mars' upper atmosphere and its escape to space."
+  },
+  "insight": {
+    "id": "insight",
+    "name": "InSight",
+    "agency": "NASA",
+    "year": 2018,
+    "status": "completed",
+    "summary": "Geophysical lander measuring Marsquakes to probe the planet's interior."
+  }
+}

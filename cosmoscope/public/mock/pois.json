@@ -1,0 +1,48 @@
+{
+  "earth": [
+    {
+      "id": "aurora-borealis",
+      "name": "Auroral Oval",
+      "description": "Realtime auroral oval tracing magnetospheric storms above northern latitudes.",
+      "coordinates": [18.0, 69.0],
+      "images": ["https://images-assets.nasa.gov/image/iss067e115624/iss067e115624~orig.jpg"],
+      "minZoom": 2.5,
+      "overlayIds": ["thermal-overlay"],
+      "missions": ["iss"]
+    }
+  ],
+  "moon": [
+    {
+      "id": "shackleton-crater",
+      "name": "Shackleton Rim",
+      "description": "Crater rim near the lunar south pole with near-continuous illumination and nearby shadowed ice deposits.",
+      "coordinates": [0.0, -89.9],
+      "images": ["https://images-assets.nasa.gov/image/PIA13517/PIA13517~orig.jpg"],
+      "minZoom": 2.8,
+      "overlayIds": ["relief-overlay"],
+      "missions": ["lro"]
+    }
+  ],
+  "mars": [
+    {
+      "id": "perseverance-landing",
+      "name": "Perseverance",
+      "description": "Perseverance rover exploring Jezero crater delta to collect caches for Mars Sample Return.",
+      "coordinates": [77.451, 18.444],
+      "images": ["https://mars.nasa.gov/system/news_items/main_images/8900_PIA25016-16.jpg"],
+      "minZoom": 3.3,
+      "overlayIds": ["base-overlay", "thermal-overlay"],
+      "missions": ["perseverance"]
+    },
+    {
+      "id": "olympus-mons",
+      "name": "Olympus Mons",
+      "description": "The tallest planetary volcano with caldera scars revealing episodic eruptions.",
+      "coordinates": [-133.0, 18.65],
+      "images": ["https://mars.nasa.gov/system/downloadable_items/44450_PIA22743.jpg"],
+      "minZoom": 2.7,
+      "overlayIds": ["base-overlay"],
+      "missions": ["maven"]
+    }
+  ]
+}

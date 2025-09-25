@@ -1,0 +1,66 @@
+:root {
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-space-deep text-white;
+  font-family: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-image: radial-gradient(circle at 20% 20%, rgba(127, 95, 255, 0.1), transparent 45%),
+    radial-gradient(circle at 80% 0%, rgba(0, 246, 255, 0.15), transparent 35%);
+  min-height: 100vh;
+}
+
+.neon-border {
+  position: relative;
+}
+
+.neon-border::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  border: 1px solid rgba(0, 246, 255, 0.3);
+  filter: blur(4px);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.neon-popup {
+  backdrop-filter: blur(18px);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid rgba(0, 246, 255, 0.8);
+  outline-offset: 3px;
+}
+
+.poi-marker {
+  backdrop-filter: blur(6px);
+  background: rgba(0, 246, 255, 0.12);
+  border: 1px solid rgba(0, 246, 255, 0.4);
+  border-radius: 999px;
+  color: white;
+  font-size: 0.65rem;
+  padding: 4px 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.poi-marker:hover {
+  background: rgba(0, 246, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.poi-marker:focus-visible {
+  outline: 2px solid rgba(255, 91, 255, 0.8);
+  outline-offset: 2px;
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "earth",
+    "name": "Earth",
+    "age": "4.54 ± 0.05 Ga",
+    "headline": "Our luminous blue home world",
+    "missions": ["apollo-11", "iss", "landsat"],
+    "accentColor": "#4a90e2"
+  },
+  {
+    "id": "moon",
+    "name": "Moon",
+    "age": "4.51 Ga",
+    "headline": "Tidal storyteller and archive of impacts",
+    "missions": ["apollo-17", "lro"],
+    "accentColor": "#f2f5f7"
+  },
+  {
+    "id": "mars",
+    "name": "Mars",
+    "age": "4.603 Ga",
+    "headline": "Rust-hued frontier of robotic explorers",
+    "missions": ["perseverance", "maven", "insight"],
+    "accentColor": "#d96c3d"
+  }
+]
