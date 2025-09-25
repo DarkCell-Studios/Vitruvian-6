@@ -2,7 +2,16 @@
 import { Suspense, useEffect, useMemo, useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { OrbitControls, Stars, useTexture } from "@react-three/drei";
-import { Color, Group, Mesh, SRGBColorSpace, Vector3, RepeatWrapping, DoubleSide } from "three";
+import {
+  Color,
+  Group,
+  Mesh,
+  SRGBColorSpace,
+  Vector3,
+  RepeatWrapping,
+  DoubleSide,
+  Texture,
+} from "three";
 import type { CameraMode } from "@/state/usePlanetStore";
 
 const SOLID_COLOR_TEXTURES = {
@@ -313,8 +322,8 @@ const RingMeshWithTexture = ({
   opacity,
   textureUrl,
   tilt,
-}: NonNullable<PlanetMeshProps["ring"]>) => {
-  const texture = useTexture(textureUrl);
+}: NonNullable<PlanetMeshProps["ring"]> & { textureUrl: string }) => {
+  const texture = useTexture(textureUrl) as Texture;
   texture.colorSpace = SRGBColorSpace;
   texture.wrapS = texture.wrapT = RepeatWrapping;
 
