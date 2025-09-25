@@ -444,19 +444,15 @@ const CameraRig = ({ cameraMode }: { cameraMode: CameraMode }) => {
   return null;
 };
 
-export const SolarSystemScene = ({
-  selectedPlanetId,
-  interactive = true,
+const SceneContents = ({
   cameraMode,
+  interactive,
+  selectedPlanetId,
   onPlanetClick,
   onPlanetDoubleClick,
 }: SolarSystemSceneProps) => {
   return (
-    <Canvas
-      dpr={[1, 2]}
-      camera={{ position: [6, 4, 10], fov: 55, near: 0.1, far: 1000 }}
-      style={{ width: "100%", height: "100%" }}
-    >
+    <>
       <color attach="background" args={["#030014"]} />
       <ambientLight intensity={0.35} />
       <pointLight position={[0, 0, 0]} intensity={3.4} color="#ffddaa" />
@@ -487,6 +483,32 @@ export const SolarSystemScene = ({
         <circleGeometry args={[40, 64]} />
         <meshBasicMaterial color="#050019" transparent opacity={0.6} />
       </mesh>
+    </>
+  );
+};
+
+export const SolarSystemScene = ({
+  selectedPlanetId,
+  interactive = true,
+  cameraMode,
+  onPlanetClick,
+  onPlanetDoubleClick,
+}: SolarSystemSceneProps) => {
+  return (
+    <Canvas
+      dpr={[1, 2]}
+      camera={{ position: [6, 4, 10], fov: 55, near: 0.1, far: 1000 }}
+      style={{ width: "100%", height: "100%" }}
+    >
+      <Suspense fallback={null}>
+        <SceneContents
+          cameraMode={cameraMode}
+          interactive={interactive}
+          selectedPlanetId={selectedPlanetId}
+          onPlanetClick={onPlanetClick}
+          onPlanetDoubleClick={onPlanetDoubleClick}
+        />
+      </Suspense>
     </Canvas>
   );
 };
