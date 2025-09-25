@@ -5,17 +5,27 @@ import { OrbitControls, Stars, useTexture } from "@react-three/drei";
 import { Color, Group, Mesh, SRGBColorSpace, Vector3, RepeatWrapping, DoubleSide } from "three";
 import type { CameraMode } from "@/state/usePlanetStore";
 
-import sunTextureUrl from "@/assets/textures/sun.jpg";
-import mercuryTextureUrl from "@/assets/textures/mercury.jpg";
-import venusTextureUrl from "@/assets/textures/venus.jpg";
-import earthTextureUrl from "@/assets/textures/earth.jpg";
-import moonTextureUrl from "@/assets/textures/moon.jpg";
-import marsTextureUrl from "@/assets/textures/mars.jpg";
-import jupiterTextureUrl from "@/assets/textures/jupiter.jpg";
-import saturnTextureUrl from "@/assets/textures/saturn.jpg";
-import saturnRingTextureUrl from "@/assets/textures/saturn_ring.png";
-import uranusTextureUrl from "@/assets/textures/uranus.jpg";
-import neptuneTextureUrl from "@/assets/textures/neptune.jpg";
+const SOLID_COLOR_TEXTURES = {
+  sun: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP4vzv0PwAH2wMPU9hHJQAAAABJRU5ErkJggg==",
+  mercury:
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNYvnj2fwAGvwLlfIi5QgAAAABJRU5ErkJggg==",
+  venus:
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mO4cbjjPwAHvQMjvChjVwAAAABJRU5ErkJggg==",
+  earth:
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPwmvDoPwAFoAK8tgXxqwAAAABJRU5ErkJggg==",
+  moon: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP49PX7fwAJmQPe+zY5oAAAAABJRU5ErkJggg==",
+  mars: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mO4mWP7HwAGJgKCxBxvOgAAAABJRU5ErkJggg==",
+  jupiter:
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN4sLjuPwAHaQMBVRzHNQAAAABJRU5ErkJggg==",
+  saturn:
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP4em/VfwAIxgN95OD0PwAAAABJRU5ErkJggg==",
+  saturnRing:
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN4dmnVCQAILwMr2/72nwAAAABJRU5ErkJggg==",
+  uranus:
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPovfDgPwAHaAM94RIcPgAAAABJRU5ErkJggg==",
+  neptune:
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPwrvz/HwAFmQLD3KJg/gAAAABJRU5ErkJggg==",
+} as const;
 
 const PLANET_DATA = [
   {
@@ -27,7 +37,7 @@ const PLANET_DATA = [
     interactive: false,
     opacity: 1,
     rotationSpeed: 0.001,
-    textureUrl: sunTextureUrl,
+    textureUrl: SOLID_COLOR_TEXTURES.sun,
     emissiveColor: "#ffbb55",
     emissiveIntensity: 1.2,
   },
@@ -40,7 +50,7 @@ const PLANET_DATA = [
     interactive: false,
     opacity: 0.9,
     rotationSpeed: 0.002,
-    textureUrl: mercuryTextureUrl,
+    textureUrl: SOLID_COLOR_TEXTURES.mercury,
   },
   {
     id: "venus",
@@ -51,7 +61,7 @@ const PLANET_DATA = [
     interactive: false,
     opacity: 0.9,
     rotationSpeed: 0.0004,
-    textureUrl: venusTextureUrl,
+    textureUrl: SOLID_COLOR_TEXTURES.venus,
   },
   {
     id: "earth",
@@ -62,7 +72,7 @@ const PLANET_DATA = [
     interactive: true,
     opacity: 1,
     rotationSpeed: 0.004,
-    textureUrl: earthTextureUrl,
+    textureUrl: SOLID_COLOR_TEXTURES.earth,
     tilt: 0.41,
     satellites: [
       {
@@ -74,7 +84,7 @@ const PLANET_DATA = [
         interactive: true,
         opacity: 1,
         rotationSpeed: 0.0025,
-        textureUrl: moonTextureUrl,
+        textureUrl: SOLID_COLOR_TEXTURES.moon,
         orbitOpacity: 0.2,
       },
     ],
@@ -88,7 +98,7 @@ const PLANET_DATA = [
     interactive: true,
     opacity: 1,
     rotationSpeed: 0.003,
-    textureUrl: marsTextureUrl,
+    textureUrl: SOLID_COLOR_TEXTURES.mars,
     tilt: 0.44,
   },
   {
@@ -100,7 +110,7 @@ const PLANET_DATA = [
     interactive: false,
     opacity: 0.7,
     rotationSpeed: 0.006,
-    textureUrl: jupiterTextureUrl,
+    textureUrl: SOLID_COLOR_TEXTURES.jupiter,
     tilt: 0.05,
   },
   {
@@ -112,13 +122,13 @@ const PLANET_DATA = [
     interactive: false,
     opacity: 0.8,
     rotationSpeed: 0.005,
-    textureUrl: saturnTextureUrl,
+    textureUrl: SOLID_COLOR_TEXTURES.saturn,
     tilt: 0.47,
     ring: {
       innerRadius: 1.1,
       outerRadius: 1.9,
       opacity: 0.9,
-      textureUrl: saturnRingTextureUrl,
+      textureUrl: SOLID_COLOR_TEXTURES.saturnRing,
       tilt: 0.35,
     },
   },
@@ -131,7 +141,7 @@ const PLANET_DATA = [
     interactive: false,
     opacity: 0.75,
     rotationSpeed: 0.002,
-    textureUrl: uranusTextureUrl,
+    textureUrl: SOLID_COLOR_TEXTURES.uranus,
     tilt: 1.7,
   },
   {
@@ -143,7 +153,7 @@ const PLANET_DATA = [
     interactive: false,
     opacity: 0.78,
     rotationSpeed: 0.003,
-    textureUrl: neptuneTextureUrl,
+    textureUrl: SOLID_COLOR_TEXTURES.neptune,
     tilt: 0.5,
   },
 ] as const;
